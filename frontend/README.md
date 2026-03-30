@@ -1,16 +1,77 @@
-# React + Vite
+# 🔐 CipherScan — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A sleek threat intelligence dashboard to scan URLs and IPs with real-time AI analysis.
 
-Currently, two official plugins are available:
+🌐 **Live Demo:** [cipherscan-live.netlify.app](https://cipherscan-live.netlify.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔍 Scan URLs and IPs with a single click
+- 📊 Visual **risk score arc** with AI-powered threat analysis
+- 🛡 **Security engine results** from 7+ engines
+- 🌍 IP geolocation & vendor verdict display
+- 💎 Pricing & API documentation modals
+- 📱 Responsive design
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧰 Tech Stack
+
+| Technology | Usage        |
+| ---------- | ------------ |
+| React      | UI framework |
+| Vite       | Build tool   |
+| Netlify    | Deployment   |
+
+---
+
+## 🚀 Setup & Installation
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/underscoreriiri/cipherScan.git
+cd cipherScan/frontend
+npm install
+```
+
+### 2. Update API URL
+
+In `src/App.jsx` update the backend URL:
+
+```js
+const res = await fetch("https://cipherscan.onrender.com/api/scan", {
+```
+
+### 3. Run locally
+
+```bash
+npm run dev
+```
+
+App will start on `http://localhost:5173`
+
+---
+
+## 🏗 Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+## 👥 Contributors
+
+| Name                                                   | Role                 |
+| ------------------------------------------------------ | -------------------- |
+| [@ved-ant-singh](https://github.com/ved-ant-singh)     | Backend Integration  |
+| [@underscoreriiri](https://github.com/underscoreriiri) | Frontend & UI Design |
+
+---
+
+## 📄 License
+
+Built as a college project. All rights reserved.
