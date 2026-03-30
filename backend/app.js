@@ -11,4 +11,8 @@ app.use(express.json());
 
 app.use("/api/scan", scanRoutes);
 
+app.get("/", (req, res) => {
+  res.send("CipherScan Backend Running 🚀");
+});
+
 export default app;
