@@ -2013,6 +2013,8 @@ export default function CipherScan() {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;600;700;800&display=swap');
+        html{overflow-x:hidden;max-width:100vw;}
+body{overflow-x:hidden;}
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
         body{background:#040b14;color:#e8edf5;font-family:'Syne',sans-serif;min-height:100vh;}
         ::-webkit-scrollbar{width:5px;}
