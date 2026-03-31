@@ -276,7 +276,12 @@ function Loading({ target }) {
           border: "1px solid rgba(34,211,160,0.25)",
           borderRadius: 4,
           background: "rgba(34,211,160,0.06)",
+          maxWidth: "100%",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
         }}
+        className="loading-target"
       >
         TARGET: {target}
       </div>
@@ -291,7 +296,7 @@ function Loading({ target }) {
       >
         <span style={{ color: "#22d3a0" }}>▶</span> {steps[step]}
       </div>
-      <div style={{ width: "100%", maxWidth: 400 }}>
+      <div style={{ width: "100%", maxWidth: "min(400px,100%)" }}>
         <div
           style={{
             height: 3,
@@ -417,6 +422,7 @@ function TargetIntel({ data, scanTarget, scanType }) {
         {label}
       </span>
       <span
+        className="info-row-val"
         style={{
           fontSize: 13,
           fontWeight: 600,
@@ -440,7 +446,10 @@ function TargetIntel({ data, scanTarget, scanType }) {
     : null;
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+    <div
+      className="intel-g"
+      style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}
+    >
       <div
         style={{
           background: "rgba(255,255,255,0.03)",
@@ -725,6 +734,7 @@ function APIModal({ onClose }) {
           animation: "slideInRight 0.3s cubic-bezier(0.22,1,0.36,1)",
           overflow: "hidden",
         }}
+        className="modal-panel"
       >
         <div
           style={{
@@ -858,6 +868,7 @@ function APIModal({ onClose }) {
         </div>
 
         <div
+          className="modal-tabs"
           style={{
             display: "flex",
             gap: 2,
@@ -1534,7 +1545,9 @@ function PricingModal({ onClose }) {
         background: "rgba(4,11,20,0.92)",
         backdropFilter: "blur(8px)",
         overflowY: "auto",
-        padding: "36px 16px 60px",
+        overflowX: "hidden",
+        padding: "24px 12px 60px",
+        WebkitOverflowScrolling: "touch",
       }}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
@@ -1685,6 +1698,7 @@ function PricingModal({ onClose }) {
             gridTemplateColumns: "repeat(auto-fill,minmax(192px,1fr))",
             gap: 13,
           }}
+          className="pricing-grid"
         >
           {PLANS.map((plan, i) => (
             <div
@@ -2013,8 +2027,7 @@ export default function CipherScan() {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;600;700;800&display=swap');
-        html{overflow-x:hidden;max-width:100vw;}
-body{overflow-x:hidden;}
+        html,body{overflow-x:hidden;max-width:100vw;width:100%;}
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
         body{background:#040b14;color:#e8edf5;font-family:'Syne',sans-serif;min-height:100vh;}
         ::-webkit-scrollbar{width:5px;}
@@ -2031,13 +2044,33 @@ body{overflow-x:hidden;}
         .d1{animation-delay:0.06s;opacity:0;}.d2{animation-delay:0.12s;opacity:0;}
         .d3{animation-delay:0.18s;opacity:0;}.d4{animation-delay:0.24s;opacity:0;}
         .d5{animation-delay:0.30s;opacity:0;}
+        /* Only apply hover transforms on devices that support hover */
+        @media (hover: none) {
+          * { -webkit-tap-highlight-color: rgba(34,211,160,0.15); }
+        }
         @media(max-width:640px){
           .stats-g{grid-template-columns:repeat(2,1fr)!important;}
           .ai-g{grid-template-columns:1fr!important;}
           .intel-g{grid-template-columns:1fr!important;}
           .eng-g{grid-template-columns:1fr!important;}
           .nav-l{display:none!important;}
-          .hero-h{font-size:30px!important;}
+          .hero-h{font-size:26px!important;letter-spacing:-1px!important;line-height:1.15!important;}
+          .scan-bar{flex-direction:column!important;border-radius:12px!important;padding:8px!important;gap:6px!important;}
+          .scan-bar select{border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.08)!important;border-radius:8px!important;padding:10px 14px!important;width:100%!important;}
+          .scan-bar input{padding:10px 14px!important;width:100%!important;}
+          .scan-bar button{width:100%!important;border-radius:8px!important;padding:12px!important;}
+          .result-header{flex-direction:column!important;align-items:flex-start!important;}
+          .verdict-banner{flex-direction:column!important;gap:14px!important;}
+          .verdict-banner-right{justify-content:flex-start!important;}
+          .ai-top-row{flex-direction:column!important;align-items:flex-start!important;}
+          .footer-inner{flex-direction:column!important;gap:14px!important;}
+          .footer-stats{gap:16px!important;}
+          .modal-panel{width:100%!important;max-width:100%!important;height:100%!important;max-height:100%!important;border-radius:0!important;margin:0!important;}
+          .modal-tabs{flex-wrap:wrap!important;gap:4px!important;}
+          pre,code{word-break:break-all!important;white-space:pre-wrap!important;}
+          .loading-target{max-width:220px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;}
+          .info-row-val{max-width:55%!important;word-break:break-all!important;text-align:right!important;}
+          .pricing-grid{grid-template-columns:1fr!important;}
         }
       `}</style>
 
@@ -2069,7 +2102,7 @@ body{overflow-x:hidden;}
           zIndex: 1,
           maxWidth: 980,
           margin: "0 auto",
-          padding: "0 20px 80px",
+          padding: "0 clamp(12px,4vw,20px) 80px",
         }}
       >
         <header
@@ -2180,7 +2213,12 @@ body{overflow-x:hidden;}
           </div>
         </header>
 
-        <section style={{ padding: "52px 0 44px", textAlign: "center" }}>
+        <section
+          style={{
+            padding: "clamp(24px,6vw,52px) 0 clamp(20px,4vw,44px)",
+            textAlign: "center",
+          }}
+        >
           <div
             style={{
               fontSize: 50,
@@ -2236,7 +2274,9 @@ body{overflow-x:hidden;}
               borderRadius: 14,
               padding: 6,
               transition: "box-shadow 0.3s,border-color 0.3s",
+              gap: 0,
             }}
+            className="scan-bar"
             onFocusCapture={(e) => {
               e.currentTarget.style.boxShadow =
                 "0 0 0 3px rgba(34,211,160,0.11),0 0 40px rgba(34,211,160,0.06)";
@@ -2276,10 +2316,11 @@ body{overflow-x:hidden;}
               value={target}
               onChange={(e) => setTarget(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleScan()}
-              placeholder="Enter URL or IP address…"
+              placeholder="Enter URL or IP…"
               disabled={scanning}
               style={{
                 flex: 1,
+                minWidth: 0,
                 background: "none",
                 border: "none",
                 outline: "none",
@@ -2366,7 +2407,7 @@ body{overflow-x:hidden;}
             style={{ display: "flex", flexDirection: "column", gap: 26 }}
           >
             <div
-              className="fu"
+              className="fu result-header"
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -2442,7 +2483,7 @@ body{overflow-x:hidden;}
             </div>
 
             <div
-              className="fu d1"
+              className="fu d1 verdict-banner"
               style={{
                 background: bannerCfg.bg,
                 border: `1px solid ${bannerCfg.border}`,
@@ -2961,8 +3002,12 @@ body{overflow-x:hidden;}
             gap: 14,
             alignItems: "center",
           }}
+          className="footer-inner"
         >
-          <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
+          <div
+            className="footer-stats"
+            style={{ display: "flex", gap: 32, flexWrap: "wrap" }}
+          >
             {[
               { label: "Engines", value: "7+" },
               { label: "AI Model", value: "Gemini" },
